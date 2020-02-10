@@ -3,9 +3,11 @@
 ### Summary
 
 This exercise analyzes the impact of a sales tax on a market with 1000
-buyers. Each buyer has a Stone-Geary demand equation of the form below, where
-Qi is household i's quantity demanded, Ai and Bi are demand parameters for
-household i, Mi is household i's income, and prd is the buyer price of the good.
+buyers. Each buyer has a demand equation of the form below, where Qi is 
+household i's quantity demanded, Ai and Bi are demand parameters for
+household i, Mi is household i's income, and prd is the buyer price of 
+the good. In case you're interested, this is a demand equation derived from a 
+Stone-Geary utility function.
 ````
   Qi = (Ai*Mi)/prd - Bi
 ````
@@ -20,7 +22,7 @@ Note that the tax may be zero.
   prs = prd - tax
 ````
 The exercise focuses on analyzing the impact of a policy that raises the
-tax from its baseline, or BAU, value of 0 to $5.
+tax from its base case value of 0 to a proposed policy case value of $5.
 
 ### Input Data
 
@@ -29,14 +31,15 @@ includes information about 1000 households, each on one line of the
 file. Using Python's zero-based subscript convention, the fields are
 as follows: (0) an identification number for the household, (1) the
 household's demographic type, (2) the household's income, Mi, (3) parameter
-Ai in the household's demand equation for the good under consideration,
-and (4) parameter Bi in the demand equation. The demographic type is
-reserved for future use and is not used in this exercise.
+Ai in the household's demand equation, and (4) parameter Bi in the demand 
+equation. The demographic type is reserved for future use and is not used 
+in this exercise.
 
 ### Deliverables
 
 A script called **market.py** that computes the market equilibrium in both
-the baseline (equilibrium 1) and tax cases (equilibrium 2).
+the base case (equilibrium 1) and policy case where the tax is set to $5 
+(equilibrium 2), and then evaluates a couple of aspects of the policy.
 
 ### Instructions
 
@@ -69,11 +72,12 @@ steps:
    the seller price, and returns the market supply using the equation above.
 
 1. Defines a function called `excess_d` that takes three arguments: `prd`,
-   `tax`, and `hhlist` and returns the difference between the total demand
-   and supply in the market. The first line should compute `prs` using the
-   accounting rule above. The second and third lines should compute the market
-   demand, `qd`, and market supply, `qs`, using `mkt_demand` and `mkt_supply`.
-   It should then return the difference: `qd-qs`.
+   `tax`, and `hhlist` and returns the excess demand at that price: that is, 
+   the difference between the total demand and total supply in the market. 
+   The first line should compute `prs` using the accounting rule above. The 
+   second and third lines should compute the market demand, `qd`, and market 
+   supply, `qs`, using `mkt_demand` and `mkt_supply`. It should then return 
+   the difference: `qd-qs`.
 
 1. The script should then use `read_households()` to read the input file
    into a variable called `hhlist`.
@@ -81,7 +85,7 @@ steps:
 1. Then, create a variable called `guess` for the initial guess of the price
    `prd` and set it to 20.
 
-1. Solve for the base case equilibrium by doing the following:
+1. Solve for the base case (equilibrium 1) by doing the following:
 
     1. Set variable `tax` to 0.
 
@@ -90,11 +94,13 @@ steps:
        `maxiter=20` as the third argument, and `args=[tax,hhlist]` as the
        fourth argument.
 
-    1. Calculate the initial market quantity, `q1`, by calling `mkt_demand()`
+    1. Calculate the initial market quantity, `qd1`, by calling `mkt_demand()`
        using `prd1` and `hhlist`.
 
-    1. Print a message giving `prd1` and `q1`. Include some text to indicate
+    1. Print a message giving `prd1` and `qd1`. Include some text to indicate
        which equilibrium is being printed.
+
+1. Solve for the policy case (equilibrium 2) by doing the following:
 
     1. Set variable `tax` to 5.
 
@@ -104,13 +110,13 @@ steps:
 
     1. Calculate the new market equilibrium by calling `mkt_demand()`.
 
-    1. Print a message giving `prd2` and `q2`. As before, include some
+    1. Print a message giving `prd2` and `qd2`. As before, include some
        descriptive text.
 
-    1. Calculate and print total tax revenue under the policy case.
+1. Calculate and print total tax revenue under the policy case.
 
-    1. Calculate and report the percentages of the tax burden that fall
-       on the buyers (as a group) and the seller.
+1. Calculate and report the percentages of the tax burden that fall
+   on the buyers as a group and the seller. 
 
 ### Submitting
 
