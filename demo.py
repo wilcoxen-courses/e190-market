@@ -1,56 +1,82 @@
 #! /bin/python3
 #  Spring 2020 (PJW)
 
+import csv
 import json 
 
 #
 #  Some example data that could appear in a file.
-#  It has four fields, an ID, a group letter, and two 
-#  parameters, a and b. The ID and group letters are 
-#  strings and the remaining three items are numeric.
+#  It has four fields, an ID, a group letter, an income
+#  level and a number of household members. The ID and 
+#  group letters are intended to be strings and the others
+#  are numeric.
 #
 
 lines = [ 
-    '1 a 12345 0.2 100\n',
-    '2 c 54321 0.3 150\n',
-    '3 b 23231 0.1 200\n'
+    'id,group,inc,n\n',
+    '1,a,35162,1\n',
+    '2,c,104750,3\n',
+    '3,b,56410,2\n'
     ]
 
 #
-#  Make a list of the data items by walking through the 
-#  lines one at a time.
+#  Create a DictReader object to read the data. It will
+#  use the first line as a list of dictionary keys and 
+#  will return a corresponding dictionary for each subsequent
+#  line.
 #
 
-item_list = []
-for line in lines:
+reader = csv.DictReader(lines)
 
-    #
-    #  A nice way to split up a line in pieces is to use 
-    #  a tuple as the left side. It saves having to pull the
-    #  elements out using something like parts = line.split() 
-    #  and then num = parts[0], group = parts[1], etc
-    #
-
-    (num,group,inc,a,b) = line.split()
-
-    #  
-    #  Make a new item from the pieces and append it to the 
-    #  list. Note the use of float() to convert the three 
-    #  items to numeric values.
-    #
-
-    new_item = {
-        'num':num,
-        'group':group,
-        'inc':float(inc),
-        'a':float(a),
-        'b':float(b)
-        }
-    item_list.append(new_item)
-
-#
-#  Now print what we found
+#%%
+#  Now make a list of the data items by walking through the 
+#  lines one at a time using DictReader. Change some to 
+#  numerical values along the way
 #
 
-print( json.dumps(item_list,indent=4) )
+household_list = []
+for hh in reader:
+    hh['inc'] = float( hh['inc'] )
+    hh['n'] = int( hh['n'] )
+    household_list.append(hh)
+
+#%%
+#  Print what we found
+#
+
+print("\nHousehold information:")
+print( json.dumps(household_list,indent=4) )
           
+#%%
+#
+#  Now use it to build a list of the per capita income of 
+#  individuals (one entry for each person in each household)
+#
+
+person_list = []
+
+for hh in household_list:
+    
+    # Extract the income and number of household members
+    
+    inc = hh['inc']
+    n = hh['n']
+    
+    # compute per capita income
+    
+    pc = round(inc/n)
+
+    # Make an entry for each member of the household. When called
+    # with one argument range() returns a list of integers starting
+    # at 0 and ending just before the value of the argument. 
+    
+    for i in range(n):
+        person_list.append(pc)
+
+#%%
+#
+#  Print the result
+#
+
+print("\nIndividual information:")
+print( json.dumps(person_list,indent=4) )
