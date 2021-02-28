@@ -34,15 +34,15 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Defines a function called `read_households()` that takes `filename` as an argument. The function should:
 
-    1. Create an empty list called `hhlist`.
+    1. Create an empty list called `households`.
 
     1. Open `filename` for reading using `fh` as the file handle.
 
     1. Create an object called `reader` to read the file by calling `csv.DictReader()` with `fh` as its argument.
 
-    1. Use a `for` loop to iterate over `reader` using `hh` (short for household) as the running variable. The loop should use `float()` calls to make the values of the following three keys numeric: `inc`, `a`, and `b`. Once that has been done the loop should append `hh` to `hhlist`.
+    1. Use a `for` loop to iterate over `reader` using `hh` (short for household) as the running variable. The loop should use `float()` calls to make the values of the following three keys numeric: `inc`, `a`, and `b`. Once that has been done the loop should append `hh` to `households`.
 
-    1. The function should return `hhlist`.
+    1. After all lines in the file have been read the function should print a message saying `"Lines read:"` and the value of `len(households)`. If all has gone well, the length should be 1000. After the print statement the function should return `households`.
 
 1. Defines a function called `ind_demand()` that takes two arguments: `prd`, a buyer price, and `hhlist`, a list of households. It should return a list consisting of the quantities demanded by each of the households. Build the list by looping through the items in `hhlist` and using the individual demand equation to compute the corresponding quantity.
 
@@ -52,9 +52,9 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Defines a function called `excess_d()` that takes three arguments: `prd`, `tax`, and `hhlist` and returns the excess demand at that price: that is, the difference between the total demand and total supply in the market. The first line of the function should compute `prs` using the accounting rule above. The second and third lines should compute the market demand, `qd`, and maket supply, `qs`, using `mkt_demand()` and `mkt_supply()`. It should then return the difference: `qd-qs`.
 
-1. After all the functions have been defined, the main body of the script should then use `read_households()` to read the input file into a variable called `hhlist`.
+1. After all the functions have been defined, use `read_households()` to read the input file into a variable called `hhlist`.
 
-1. Then, it should create a variable called `guess` for the initial guess of the price `prd` and set it to 20.
+1. Create a variable called `guess` for the initial guess of the price `prd` and set it to 20.
 
 1. Solve for the base case (equilibrium 1) by doing the following:
 
@@ -78,7 +78,7 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Calculate and print total tax revenue under the policy case.
 
-1. Calculate and report the percentages of the tax burden that fall on the buyers as a group and the seller.
+1. Calculate and report the percentages of the tax burden that fall on the buyers as a group and the seller. Round the percentages to integers so that, for example, 12.345% is printed as 12.
 
 ### Submitting
 
