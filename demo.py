@@ -31,11 +31,14 @@ reader = csv.DictReader(fh)
 #
 #  Now make a list of the data items by walking through the 
 #  lines one at a time using DictReader. Change some to 
-#  numerical values along the way
+#  numerical values along the way, and remove extra whitespace 
+#  from the others
 #
 
 household_list = []
 for hh in reader:
+    hh['id'] = hh['id'].strip()
+    hh['name'] = hh['name'].strip()
     hh['inc'] = float( hh['inc'] )
     hh['n'] = int( hh['n'] )
     household_list.append(hh)
@@ -82,12 +85,14 @@ for hh in household_list:
     # 
        
     for i in range(n):
-        person_list.append(pc)
+        person_list.append( {'name':hh['name'], 'n':i+1, 'pc_inc':pc} )
 
 #%%
 #
 #  Print the result
 #
 
-print("\nIndividual information:")
-print( json.dumps(person_list,indent=4) )
+print("\nContents of person_list:\n")
+
+for person in person_list:
+    print( person['name'], person['n'], person['pc_inc'] )
