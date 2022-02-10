@@ -1,30 +1,36 @@
 # Exercise: Solving for Market Equilibria
 
-### Summary
+## Summary
 
 This exercise analyzes the impact of a sales tax on a market with 1000 buyers. Each buyer has a demand equation of the form below, where Qi is household i's quantity demanded, Ai and Bi are demand parameters for household i, Mi is household i's income, and prd is the buyer price of the good. In case you're interested, this is a demand equation derived from a Stone-Geary utility function.
-````
+
+````python
   Qi = (Ai*Mi)/prd - Bi
 ````
+
 The market supply of the good is given by the equation below, where Qs is total market supply and prs is the seller price of the good:
-````
+
+````python
   Qs = 5000*prs
 ````
+
 Finally, the buyer and seller prices are related by a tax as shown below. Note that the tax may be zero.
-````
+
+````python
   prs = prd - tax
 ````
+
 The exercise focuses on analyzing the impact of a policy that raises the tax from its base case value of 0 to a proposed policy case value of $5.
 
-### Input Data
+## Input Data
 
 All of the input data is contained in the file **households.csv**. It includes information about 1000 households, each on one line of the file. Using Python's zero-based subscript convention, the fields are as follows: [0] an identification number for the household, [1] the household's demographic type, [2] the household's income, Mi, [3] parameter Ai in the household's demand equation, and [4] parameter Bi in the demand equation. The demographic type is reserved for future use and is not used in this exercise.
 
-### Deliverables
+## Deliverables
 
 A script called **market.py** that computes the market equilibrium in both the base case (equilibrium 1) and policy case where the tax is set to $5 (equilibrium 2), and then evaluates a couple of aspects of the policy.
 
-### Instructions
+## Instructions
 
 Please prepare a script called `market.py` that does each of the following steps:
 
@@ -40,7 +46,7 @@ Please prepare a script called `market.py` that does each of the following steps
 
     1. Create an object called `reader` to read the file by calling `csv.DictReader()` with `fh` as its argument.
 
-    1. Use a `for` loop to iterate over `reader` using `hh` (short for household) as the running variable. The loop should use `float()` calls to make the values of the following three keys numeric: `inc`, `a`, and `b`. Once that has been done the loop should append `hh` to `households`.
+    1. Use a `for` loop to iterate over `reader` using `hh` (short for household) as the loop variable. The loop should use `float()` calls to make the values stored under the following three keys numeric: `inc`, `a`, and `b`. Once that has been done the loop should append `hh` to `households`.
 
     1. After all lines in the file have been read the function should print a message saying `"Lines read:"` and the value of `len(households)`. If all has gone well, the length should be 1000. After the print statement the function should return `households`.
 
@@ -62,7 +68,7 @@ Please prepare a script called `market.py` that does each of the following steps
 
     1. Calculate the initial value of the buyer price, `prd1`, by calling `opt.newton()` using `excess_d` as the first argument, `guess` as the second argument, `maxiter=20` as the third argument, and `args=[tax,hhlist]` as the fourth argument.
 
-    1. Calculate the initial market quantity, `qd1`, by calling `mkt_demand()` using `prd1` and `hhlist`.
+    1. Calculate the initial market quantity, `qd1`, by calling `mkt_demand()` using `prd1` and `hhlist` as the arguments.
 
     1. Print a message giving `prd1` and `qd1`. Include some text to indicate which equilibrium is being printed.
 
@@ -80,11 +86,11 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Calculate and report the percentages of the tax burden that fall on the buyers as a group and the seller. Round the percentages to integers so that, for example, 12.345% is printed as 12.
 
-### Submitting
+## Submitting
 
 Once you're happy with everything and have committed all of the changes to your local repository, please push the changes to GitHub. At that point, you're done: you have submitted your answer.
 
-### Tips
+## Tips
 
 + This is a type of analysis known as "microsimulation". It allows very fine-grained analysis of the impacts of policies. In this case, the analysis could pick up differences across demographic groups, or across income deciles, or both, although those steps are beyond the scope of this exercise.
 
