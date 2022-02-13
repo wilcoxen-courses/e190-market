@@ -46,17 +46,17 @@ Please prepare a script called `market.py` that does each of the following steps
 
     1. Create an object called `reader` to read the file by calling `csv.DictReader()` with `fh` as its argument.
 
-    1. Use a `for` loop to iterate over `reader` using `hh` (short for household) as the loop variable. The loop should use `float()` calls to make the values stored under the following three keys numeric: `inc`, `a`, and `b`. Once that has been done the loop should append `hh` to `households`.
+    1. Use a `for` loop to iterate over `reader` using `hh` (short for household) as the loop variable. The loop should use `float()` calls to make the values stored under the following three keys numeric: `inc`, `a`, and `b`. The loop should then append `hh` to `households`.
 
     1. After all lines in the file have been read the function should print a message saying `"Lines read:"` and the value of `len(households)`. If all has gone well, the length should be 1000. After the print statement the function should return `households`.
 
 1. Defines a function called `ind_demand()` that takes two arguments: `prd`, a buyer price, and `hhlist`, a list of households. It should return a list consisting of the quantities demanded by each of the households. Build the list by looping through the items in `hhlist` and using the individual demand equation to compute the corresponding quantity.
 
-1. Defines a function called `mkt_demand()` that takes the same two arguments as `ind_demand()`: `prd` and `hhlist`. The first line should compute a list of individual quantities, `qlist`, by using `ind_demand()`. The remainder of the function should sum the values in `qlist` and return the result.
+1. Defines a function called `mkt_demand()` that takes the same two arguments as `ind_demand()`: `prd` and `hhlist`. The first line should compute a list of individual quantities, `qlist`, by using `ind_demand()`. The next line should use the `sum()` function to add up the demand values in `qlist`. The function should then return the sum.
 
-1. Defines a function called `mkt_supply()` that takes one argument, `prs`, the seller price, and returns the market supply using the equation above.
+1. Defines a function called `mkt_supply()` that takes one argument, `prs`, the seller price, and returns the market supply computed using the equation above.
 
-1. Defines a function called `excess_d()` that takes three arguments: `prd`, `tax`, and `hhlist` and returns the excess demand at that price: that is, the difference between the total demand and total supply in the market. The first line of the function should compute `prs` using the accounting rule above. The second and third lines should compute the market demand, `qd`, and maket supply, `qs`, using `mkt_demand()` and `mkt_supply()`. It should then return the difference: `qd-qs`.
+1. Defines a function called `excess_d()` that takes three arguments: `prd`, `tax`, and `hhlist` and returns the excess demand at that price: that is, the difference between the total demand and total supply in the market. The first line of the function should compute `prs` using the accounting rule above. The second and third lines should compute the market demand, `qd`, and maket supply, `qs`, using `mkt_demand()` and `mkt_supply()`. The function should then return the difference: `qd-qs`.
 
 1. After all the functions have been defined, use `read_households()` to read the input file into a variable called `hhlist`.
 
