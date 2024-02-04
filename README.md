@@ -38,7 +38,7 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Imports `scipy.optimize` as `opt`.
 
-1. Defines a function called `read_households()` that takes `filename` as an argument. Use `str` as the type hint for `filename` and `list` as the type hint for the function. The function should:
+1. Defines a function called `read_households()` that takes `filename` as an argument. Use `str` as the type hint for `filename` and `list` as the type hint for the function's return value. The function should:
 
     1. Create an empty list called `households`.
 
