@@ -38,7 +38,7 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Imports `scipy.optimize` as `opt`.
 
-1. Defines a function called `read_households()` that takes `filename` as an argument. The function should:
+1. Defines a function called `read_households()` that takes `filename` as an argument. Use `str` as the type hint for `filename` and `list` as the type hint for the function. The function should:
 
     1. Create an empty list called `households`.
 
@@ -50,15 +50,15 @@ Please prepare a script called `market.py` that does each of the following steps
 
     1. After all lines in the file have been read the function should print a message saying `"Lines read:"` and the value of `len(households)`. If all has gone well, the length should be 1000. After the print statement the function should return `households`.
 
-1. Defines a function called `ind_demand()` that takes two arguments: `prd` (the buyer price) and `hhlist` (a list of households). It should return a list consisting of the quantities demanded by each of the households.
+1. Defines a function called `ind_demand()` that takes two arguments: `prd` (the buyer price, use hint `float`) and `hhlist` (a list of households, hint `list`). It should return a `list` (remember to include the hint) consisting of the quantities demanded by each of the households.
 
     Build the list in the same way you've built several previous lists. Start with an empty list and then use variable `hh` to loop through the items in `hhlist`. Within the loop use the individual demand equation to compute quantity demanded by the household stored in `hh` and then append that value to the list you're building. Be sure to return the finished list.
 
-1. Defines a function called `mkt_demand()` that takes the same two arguments as `ind_demand()`: `prd` and `hhlist`. The first line should compute a list of individual quantities, `qlist`, by using `ind_demand()`. The next line should use the `sum()` function to add up the demand values in `qlist`. The function should then return the sum.
+1. Defines a function called `mkt_demand()` that takes the same two arguments as `ind_demand()`: `prd` (hint `float`) and `hhlist` (hint `list`). The hint for the return value should be `float`. The first line should compute a list of individual quantities, `qlist`, by using `ind_demand()`. The next line should use the `sum()` function to add up the demand values in `qlist`. The function should then return the sum.
 
-1. Defines a function called `mkt_supply()` that takes one argument, `prs`, the seller price, and returns the market supply computed using the equation above.
+1. Defines a function called `mkt_supply()` that takes one argument, `prs`, the seller price (hint `float`), and returns the market supply (hint `float`) computed using the equation above.
 
-1. Defines a function called `excess_d()` that takes three arguments: `prd`, `tax`, and `hhlist` and returns the excess demand at that price. The excess demand is the difference between the total demand and total supply in the market. The first line of the function should compute `prs` using the accounting rule above. The second and third lines should compute the market demand, `qd`, and maket supply, `qs`, using `mkt_demand()` and `mkt_supply()`. The function should then return the difference: `qd-qs`.
+1. Defines a function called `excess_d()` that takes three arguments: `prd` (hint `float`), `tax` (hint `float`), and `hhlist` (hint `list`) and returns the excess demand at that price (hint `float`). The excess demand is the difference between the total demand and total supply in the market. The first line of the function should compute `prs` using the accounting rule above. The second and third lines should compute the market demand, `qd`, and maket supply, `qs`, using `mkt_demand()` and `mkt_supply()`. The function should then return the difference: `qd-qs`.
 
 1. After all the functions have been defined, use `read_households()` to read the input file into a variable called `hhlist`.
 
