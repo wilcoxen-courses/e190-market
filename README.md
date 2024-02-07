@@ -52,7 +52,7 @@ Please prepare a script called `market.py` that does each of the following steps
 
 1. Defines a function called `ind_demand()` that takes two arguments: `prd` (the buyer price, use hint `float`) and `hhlist` (a list of households, hint `list`). It should return a `list` (remember to include the hint) consisting of the quantities demanded by each of the households.
 
-    Build the list in the same way you've built several previous lists. Start with an empty list and then use variable `hh` to loop through the items in `hhlist`. Within the loop use the individual demand equation to compute quantity demanded by the household stored in `hh` and then append that value to the list you're building. Be sure to return the finished list.
+    Build the list in the same way you've built several previous lists. Start with an empty list and then use variable `hh` to loop through the items in `hhlist`. Within the loop use the individual demand equation to compute the quantity demanded by the household stored in `hh` and then append that value to the list you're building. Be sure to return the finished list.
 
 1. Defines a function called `mkt_demand()` that takes the same two arguments as `ind_demand()`: `prd` (hint `float`) and `hhlist` (hint `list`). The hint for the return value should be `float`. The first line should compute a list of individual quantities, `qlist`, by using `ind_demand()`. The next line should use the `sum()` function to add up the demand values in `qlist`. The function should then return the sum.
 
